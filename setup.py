@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='burp',
-    version='1.21',
+    version='1.22',
     packages=['burp'],
     url='https://github.com/elnerd/burp-interfaces',
     license='MIT',
