@@ -53,4 +53,16 @@ python do not support multiple signatures. In many cases typing hints support mu
 When this is not the case, the methods will have an extra optional parameter called hey_check_docs to remind you that
 there are multiple signatures for the given method.
 
+Building
+========
+
+::
+
+    git submodule update --init --recursive
+    pip install -r requirements.txt
+    python java2py/java2py.py --sourcedir sources --package burp --outfile burp/burp.py
+
+
+
+
 
