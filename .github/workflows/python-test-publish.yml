@@ -31,11 +31,12 @@ jobs:
         ln -s -r git-dependencies/burp-extender-api/src/main/java/burp/ sources/burp
         ln -s -r git-dependencies/jdk/src/java.base/share/classes/java/ sources/java
         python java2py/java2py.py --sourcedir sources --package burp --outfile burp/burp.py
-    - name: Test importing burp
+    - name: Test
+      uses: actions/setup-python@v2
       with:
         python-version: "2.7"
       run: |
-        python2 -c "import burp"
+        python2 -c "from burp import *"
     - name: Publish
       env:
         TWINE_USERNAME: __token__
