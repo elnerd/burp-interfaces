@@ -2,7 +2,7 @@
 # For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
 # Testing...
 
-name: Upload Python Package
+name: Deploy Test PyPi module
 
 on:
   release:
