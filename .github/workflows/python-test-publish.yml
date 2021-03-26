@@ -73,8 +73,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install setuptools wheel twine
-      - name: Download burp module
-        with: actions/download-artifact@v2
+      - name: Download module
+        uses: actions/download-artifact@v2
+        with:
           name: burp-module
           path: burp/
       - name: Publish
