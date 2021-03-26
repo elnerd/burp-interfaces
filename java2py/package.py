@@ -51,12 +51,21 @@ class PackageTemplateHelper(object):
 
     @property
     def klasses(self):
+        klasses = []
         for class_name in self.klass_names:
+            # HACK: need to put classes with inheritances last
+
             klassfile = self.package.parse_class(class_name)
             if klassfile is None:
                 continue
+
+            inheritance = klassfile.klass.inheritance
+            if len(inheritance) == 1 and inheritance[0] == "object":
+                klasses.insert(0, klassfile)
             else:
-                yield klassfile
+                klasses.append(klassfile)
+
+        return klasses
 
     @property
     def imports(self):

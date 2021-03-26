@@ -25,14 +25,21 @@ jobs:
         python -m pip install --upgrade pip
         pip install setuptools wheel twine
         pip install -r requirements.txt
-    - name: Build and publish
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
+    - name: Build
       run: |
         git submodule update --init --recursive
         ln -s -r git-dependencies/burp-extender-api/src/main/java/burp/ sources/burp
         ln -s -r git-dependencies/jdk/src/java.base/share/classes/java/ sources/java
         python java2py/java2py.py --sourcedir sources --package burp --outfile burp/burp.py
+    - name: Test importing burp
+      with:
+        python-version: "2.7"
+      run: |
+        python2 -c "import burp"
+    - name: Publish
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
+      run: |
         python setup.py sdist bdist_wheel
         twine upload --repository testpypi dist/*
