@@ -1,0 +1,6 @@
+[submodule "git-dependencies/jdk"]
+	path = git-dependencies/jdk
+	url = https://github.com/openjdk/jdk
+[submodule "git-dependencies/burp-extender-api"]
+	path = git-dependencies/burp-extender-api
+	url = https://github.com/PortSwigger/burp-extender-api
