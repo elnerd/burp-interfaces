@@ -30,6 +30,8 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
       run: |
+        git -C git-dependencies/burp-extender-api/ pull origin master
+        git -C git-dependencies/jdk/ pull origin master
         ln -s git-dependencies/burp-extender-api/src/main/burp/ sources/burp
         ln -s git-dependencies/jdk/src/java.base/share/classes/java/ sources/java
         ls -la
