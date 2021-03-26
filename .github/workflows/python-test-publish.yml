@@ -32,6 +32,8 @@ jobs:
       run: |
         ln -s git-dependencies/burp-extender-api/src/main/burp/ sources/burp
         ln -s git-dependencies/jdk/src/java.base/share/classes/java/ sources/java
+        ls -la
+        ls -la sources/
         python java2py/java2py.py --sourcedir sources --package burp --outfile burp/burp.py
         python setup.py sdist bdist_wheel
         twine upload --repository testpypi dist/*
