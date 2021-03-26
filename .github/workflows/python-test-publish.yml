@@ -30,8 +30,8 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
       run: |
-        ln -s git-dependencies/burp-extender-api/src/main/burp/ sources/burp/
-        ln -s git-dependencies/jdk/src/java.base/share/classes/java/ sources/java/
+        ln -s git-dependencies/burp-extender-api/src/main/burp/ sources/burp
+        ln -s git-dependencies/jdk/src/java.base/share/classes/java/ sources/java
         python java2py/java2py.py --sourcedir sources --package burp --outfile burp/burp.py
         python setup.py sdist bdist_wheel
         twine upload --repository testpypi dist/*
