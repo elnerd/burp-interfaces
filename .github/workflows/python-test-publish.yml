@@ -32,12 +32,10 @@ jobs:
       run: |
         git -C git-dependencies/burp-extender-api/ pull origin master
         git -C git-dependencies/jdk/ pull origin master
-        pwd
-        ls /
+        ls -la git-dependencies/burp-extender-api/src/main/java/burp/
         ln -s git-dependencies/burp-extender-api/src/main/java/burp/ sources/burp
         ln -s git-dependencies/jdk/src/java.base/share/classes/java/ sources/java
         ls -la git-dependencies/burp-extender-api/src/main/java/burp/
-        ls -la
         ls -la sources/
         ls -la sources/burp/
         python java2py/java2py.py --sourcedir sources --package burp --outfile burp/burp.py
