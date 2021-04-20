@@ -143,6 +143,13 @@ class TypeResolver(object):
                 raise Exception("You have reached unreachable code!")
 
     def python_resolve(self, typeobj: Type, klassfile: KlassFile = None):
+        """
+
+        :param typeobj: Type object
+        :param klassfile: Klass file
+        :return: python equivalent type
+        """
+
         if typeobj is None:
             return "None"
         if typeobj.has_children():
@@ -153,7 +160,10 @@ class TypeResolver(object):
         else:
             if typeobj.is_basic():
                 if typeobj.is_array():
-                    return f"List[{self.convert_type(self.resolve_type(typeobj.name, klassfile=klassfile))}]"
+                    #return f"List[{self.convert_type(self.resolve_type(typeobj.name, klassfile=klassfile))}]"
+                    converted_type = f"List[{self.resolve_type(typeobj.name, klassfile=klassfile)}]"
+                    return self.convert_type(converted_type)
+                    #return f"List[{self.convert_type(self.resolve_type(typeobj.name, klassfile=klassfile))}]"
                 else:
                     return self.convert_type(self.resolve_type(typeobj.name))
             elif typeobj.is_reference():
@@ -218,6 +228,14 @@ class JavaToPython(object):
 
 if __name__ == "__main__":
     import argparse
+    import sys
+    if sys.gettrace() is not None:
+        print("Debugging...")
+        j2p = JavaToPython("sources")
+        pypackage = j2p.create_python_package("burp")
+        print(pypackage)
+        sys.exit()
+
     parser = argparse.ArgumentParser("Create Python Interface Class from Java Source Package")
     parser.add_argument("--sourcedir", type=str, help="directory where java packages are located", required=True)
     parser.add_argument("--package", type=str, help="Java Package to create python class from", required=True)
