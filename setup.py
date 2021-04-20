@@ -4,7 +4,7 @@ readme = open("README.rst").read()
 
 setup(
     name='burp',
-    version='1.26',
+    version='1.27',
     packages=['burp'],
     url='https://github.com/elnerd/burp-interfaces',
     license='MIT',

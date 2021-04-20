@@ -59,7 +59,7 @@ class TypeResolver(object):
         """
         python_equivalents = {
             "java.lang.String": "str",
-            "List[java.lang.Byte]": "bytearray",
+            "List[java.lang.Byte]": "array",
             "java.lang.Int": "int",
             "java.lang.Double": "float",
             "java.lang.Short": "int",
